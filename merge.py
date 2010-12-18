@@ -9,7 +9,7 @@ def perror(line_num,  name, msg):
 	return -2
 
 if __name__=="__main__":
-	fp_index = open("index")
+	fp_index = open("list")
 	index = fp_index.readlines()
 	fp_index.close()
 	fp_code = 0

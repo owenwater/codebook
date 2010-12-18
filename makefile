@@ -1,4 +1,4 @@
-codebook: merge.py
+merge: merge.py
 	python merge.py
 copy: codebook
 	cp codebook codebook.cpp

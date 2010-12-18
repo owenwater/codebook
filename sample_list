@@ -14,12 +14,7 @@ error1:
 -
 
 error2:
-	file: file: file not exist.
--
-
-test3:
-	file: a.cpp
-	Just another test
+	file: file not exist.
 -
 
 error3:
