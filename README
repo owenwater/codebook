@@ -1,11 +1,1 @@
-rectangle_cutting:
-	file: rectangle_cutting.cpp
-	Cutting one rectangle by the others. Every cutting will make mostly
-	four new rectangles. The coordinates will be:
-	y[1] -------
-	     |     |
-	     |     |
-	y[0] -------
-	   x[0]    x[1]
-END
-	    
+coming soon...

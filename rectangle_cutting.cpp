@@ -1,6 +1,10 @@
-#include "base.h"
+/*rectangle_cutting
+ * Author: owen_water
+ * */
+#include <algorithm>
+using namespace std;
+
 /*codebook start*/
-/*rectangle_cutting*/
 struct rec
 {
 	/*rectangle*/
@@ -47,8 +51,6 @@ struct rec
 		 && this->y[0] >= cov.y[0] && this->y[1] <= cov.y[1]);
 	}
 };
-
-
 
 int cut(rec r, rec cut, rec res[])
 {
