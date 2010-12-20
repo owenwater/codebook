@@ -8,3 +8,20 @@ rectangle_cutting:
 	y[0] -------
 	   x[0]    x[1]
 -
+
+error1:
+	not contain file 
+-
+
+error2:
+	file: file not exist.
+-
+
+test:
+	file: a.cpp
+	just a test
+-
+
+error3:
+	file: a.cpp
+	not end with '-'

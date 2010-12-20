@@ -84,6 +84,7 @@ int cut(rec r, rec cut, rec res[])
 	return n;
 }
 
+/*codebook end*/
 int main ()
 {
 	//freopen(inputfilename , "r" , stdin);
@@ -91,4 +92,3 @@ int main ()
 
 	return 0;
 }
-/*codebook end*/
