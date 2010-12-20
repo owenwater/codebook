@@ -1,5 +1,7 @@
-/*rectangle_cutting
+/*
+ * rectangle_cutting
  * Author: owen_water
+ * 
  * */
 #include <algorithm>
 using namespace std;
