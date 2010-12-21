@@ -3,11 +3,13 @@ from cache import Cache
 
 class Merge(object):
 	def get_file_name(self, s):
-		#remove the first "file: " and blanl
+		"""remove the first "file: " and blanl
+		"""
 		return s.partition("file:")[2].strip()
 
 	def open_file(self, file_name):
-		#open file
+		"""open file
+		"""
 		try:
 			fp_code = open(file_name)
 			return fp_code
@@ -17,7 +19,8 @@ class Merge(object):
 					+file_name+"\"")
 
 	def perror(self, line_num,  name, msg):
-		#print error
+		"""print error
+		"""
 		sys.stderr.write("merge "+str(line_num)+": error: "\
 				+msg+"\n")
 		sys.stderr.write("merge: skip the program: "+name[0]+"\n")
@@ -27,20 +30,24 @@ class Merge(object):
 		fp.write(s)
 
 	def move_in_comment(self, fp, in_comment):
-		#start print comments
+		"""start print comments
+		"""
 		if not in_comment:
 			in_comment = True
 			self.output(fp, "/*\n")
 		return in_comment
 
 	def move_out_comment(self, fp, in_comment):
-		#stop print comments
+		"""stop print comments
+		"""
 		if in_comment:
 			in_comment = False
 			self.output(fp, "*/\n")
 		return in_comment
 
 	def output_code(self, fp, file_name):
+		"""open code file and print it to fp
+		"""
 		fp_code = self.open_file(file_name);
 		if fp_code == -2:
 			return -2
@@ -58,6 +65,8 @@ class Merge(object):
 
 	def run(self, list_file_name = "list", output_file_name \
 			= "codebook"):
+		"""main function
+		"""
 		fp_index = open(list_file_name)
 		index = fp_index.readlines()
 		fp_index.close()
