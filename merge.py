@@ -1,4 +1,5 @@
 import sys
+import copy
 from cache import Cache
 
 class Merge(object):
@@ -17,7 +18,6 @@ class Merge(object):
 			return self.perror(self.whole_line_num, \
 					self.current_name, "can't open code file: \""\
 					+file_name+"\"")
-
 	def perror(self, line_num,  name, msg):
 		"""print error
 		"""
@@ -45,15 +45,17 @@ class Merge(object):
 			self.output(fp, "*/\n")
 		return in_comment
 
-	def output_code(self, fp, file_name):
+	def output_code(self, fp, file_name, cache, print_flag = True):
 		"""open code file and print it to fp
 		"""
 		fp_code = self.open_file(file_name);
 		if fp_code == -2:
 			return -2
+		if not print_flag:
+			return 0
 		code = fp_code.readlines()
 		print_code = False
-		fp.write(self.cache.get())
+		fp.write(cache.get())
 		for line_code in code:
 			if line_code.strip() == "/*codebook start*/":
 				print_code = True
@@ -62,6 +64,7 @@ class Merge(object):
 			elif print_code:
 				fp.write(line_code)
 		fp_code.close()
+		return 1
 
 	def run(self, list_file_name = "list", output_file_name \
 			= "codebook"):
@@ -75,7 +78,7 @@ class Merge(object):
 		part_line_num = -1
 		self.whole_line_num = 0
 		self.current_name = []
-		error_list = []
+		self.lib = {}
 		in_comment = False
 
 		fp_output = open(output_file_name , "w")
@@ -116,7 +119,12 @@ class Merge(object):
 				self.output(self.cache, "\n")
 				part_line_num = -1
 				#print code
-				self.output_code(fp_output, file_name)
+				rt = self.output_code(\
+						fp_output, file_name, self.cache, False)
+				#TODO: using another way to check the file exist or not
+				if rt >= 0:
+					self.lib[self.current_name[0]] =\
+							file_name, copy.deepcopy(self.cache)
 			elif part_line_num == -2:
 				if line == "-":
 					part_line_num = -1
@@ -128,7 +136,15 @@ class Merge(object):
 					"missing a \"-\"")
 			in_comment =  self.move_out_comment(\
 					self.cache, in_comment)
+
+		self.write(fp_output)
+
 		fp_output.close()
+	def write(self, fp):
+		"""will print as file "index" future
+		"""
+		for ea in self.lib.values():
+			self.output_code(fp, ea[0], ea[1] )
 
 		
 
