@@ -1,5 +1,6 @@
 import sys
 import copy
+import os
 from cache import Cache
 
 class Merge(object):
@@ -119,8 +120,11 @@ class Merge(object):
 				self.output(self.cache, "\n")
 				part_line_num = -1
 				#print code
-				rt = self.output_code(\
-						fp_output, file_name, self.cache, False)
+				rt = 0
+				if not os.path.isfile(file_name):
+					self.perror(self.whole_line_num, self.current_name, \
+							"can't open code file: \""+file_name+"\"")
+					rt = -2
 				#TODO: using another way to check the file exist or not
 				if rt >= 0:
 					self.lib[self.current_name[0]] =\
