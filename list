@@ -9,19 +9,9 @@ rectangle_cutting:
 	   x[0]    x[1]
 -
 
-error1:
-	not contain file 
+expression_calculation:
+	file: calculator.cpp
+	Calculate the result of expression with operator{+,-,*,/,(,)}.
+	And throw Exception {const char *} while expression is illegal.
 -
 
-error2:
-	file: file not exist.
--
-
-test:
-	file: a.cpp
-	just a test
--
-
-error3:
-	file: a.cpp
-	not end with '-'
