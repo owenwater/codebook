@@ -9,8 +9,8 @@ rectangle_cutting:
 	   x[0]    x[1]
 -
 
-expression_calculation:
-	file: calculator.cpp
+expression_calculator:
+	file: expression_calculator.cpp
 	Calculate the result of expression with operator{+,-,*,/,(,)}.
 	And throw Exception {const char *} while expression is illegal.
 -
